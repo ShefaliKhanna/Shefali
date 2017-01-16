@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Facebook.com</title>
+
+<script>
+var a=[];
+/*function ValidateEmail(mail)   
+{  
+ if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(Form.Email.value))  
+  {  
+    return (true)  
+  }  
+    alert("You have entered an invalid email address!")  
+    return (false)  
+}*/
+
+
+
+function setCookie(cname,cvalue)
+{
+
+   document.cookie= cname + "=" + cvalue + ";path=/";
+}
+
+function getCookie(cname)
+{
+	var name= cname + "=";
+	var decodedCookie = decodeURIComponent(document.cookie);
+	var ca = decodedCookie.split(';');
+
+	for(var i=0; i<ca.length;i++)
+	{
+		var c=ca[i];
+		while(c.charAt(0) == ' ')
+		{
+			c=c.substring(1);
+		}
+		
+		if(c.indexOf(name)==0)
+		{
+			return c.substring(name.length,c.length);
+		}
+	}
+	
+	return "";
+}
+
+function checkCookie(){
+	var user1=document.forms["myForm"]["firstname"].value;
+	var user=getCookie("firstname");
+	if(user==user1){
+	
+	alert("Username has already registered");
+	}
+	
+	else{
+	var user=document.forms["myForm"]["firstname"].value;
+		if(user!=""&&user!=null){
+			var user_enc=encodeURIComponent(user);
+			setCookie("firstname",user_enc);
+	
+		}
+	
+	}
+
+}
+
+
+
+function validateForm() {
+    var x = document.forms["myForm"]["firstname"].value;
+    
+	if (x == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+	
+	var y = document.forms["myForm"]["lastname"].value;
+    if (y == "") {
+        alert("Surame must be filled out");
+        return false;
+    }
+	
+	var z = document.forms["myForm"]["mnb"].value;
+    if (z == "") {
+	
+        alert("Mobile number must be filled out");
+        return false;
+    }
+	if(z.length!=10){
+	
+		alert("Wrong Mobile Number");
+		return false;
+	}
+	
+	var w = document.forms["myForm"]["Rmnb"].value;
+    
+	if (w == "") {
+        alert("Mobile number must be filled out");
+        return false;
+    }
+	if(w.length!=10){
+	
+		alert("Wrong Mobile Number");
+		return false;
+	}
+	if(w!=z){
+		alert("Mobile numbers are not same");
+		return false;
+	}
+	var V = document.forms["myForm"]["password"].value;
+    if (V == "") {
+        alert("Password must be filled out");
+        return false;
+    }
+	var data={
+	firstname:x,
+	surname:y,
+	mnb:z,
+	password:V
+	}
+	//checkCookie();
+//var ss=JSON.stringify(data);
+
+	//localStorage.setItem("itt",JSON.stringify(data));
+	//alert(localStorage.getItem("itt"));
+	//var cooki=data.firstname;
+	//alert(cooki);
+	//document.cookie="cooki";
+	
+	//cookievalue= escape(data.firstnam) + ";";
+    //document.cookie="name=" + cookievalue;
+	//document.write ("Setting Cookies : " + "name=" + cookievalue );
+
+	//alert(decodeURIComponent(document.cookie));
+	var recieve=data;
+	var i=0;
+	var flag=0;
+	for(i=0;i<a.length;i++){
+	
+		var cc=a[i];
+		var cs=cc.mnb;
+		var cd=cc.password;
+	
+	if(data.mnb==cs){
+		flag=1;
+	}
+	
+	
+	}
+	if(flag==0)
+		{
+		localStorage.setItem(z,JSON.stringify(data));
+		
+		a.push(recieve);
+		
+		}
+	else if(flag==1)
+		alert("This account has already been created");
+	//alert(recieve);
+	//setcookie("cooki",data.mnb);
+	return true;
+}
+function validateForm1(){
+	var x=document.forms["Form"]["Email"].value;
+	var y=document.forms["Form"]["password1"].value;
+	//ValidateEmail(x);
+	var retrieve=localStorage.getItem(x);
+	var fin=JSON.parse(retrieve);
+	var i;
+	var k=0;
+	for(i=0;i<a.length;i++){
+	var sd=a[i];
+	var a1=sd.mnb;
+	var a2=sd.password;
+		if(x==a1&&y==a2)
+		{
+			
+			//alert("welcome ... :)");
+			k=1;
+			break;
+		}
+		
+		
+	}
+	if(k==1){
+	
+		localStorage.setItem("user",x);
+	
+		//alert("WELCOME USER"+ x);
+	}
+	else{
+		alert("INVALID USERNAME OR PASSWORD");
+		return false;
+	}
+	
+}
+
+</script>
+</head>
+<body>
+<div style="background-color:#22467f;color:white;height:120px;">
+<div style="background-color:#22467f;color:white;height:40px;width:550px;font-size:40px; text-align-last:right;padding:40px; font-weight:2px;font-family:Tahoma;float:left;" align="right">
+facebook
+</div>
+<div style="background-color:#22467f;color:white;height:120px;width:800px;float:right;text-align:left;text-align:bottom;">
+<form name="Form" action="display.html"  method="post">
+<br>
+<br>
+<br>
+  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+  &nbsp Email or Phone:&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  Password:&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<br>
+  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+  <input type="text" name="Email" required>&nbsp &nbsp
+  
+  <input type="password" name="password1" required>&nbsp &nbsp
+  <input type="submit" onclick="validateForm1()" name="submit" style="background-color:#22467f; border-radius:2px; color:white;" >&nbsp &nbsp &nbsp
+</form>
+</div>
+</div>
+<div style="background-color:#dee1e5;height:785px;">
+<div style="background-color:#dee1e5;height:500px;width:650px;float:left; text-align:right; padding:40px; font-size:50px; font-family:Tahoma">
+Recent logins<br><br>
+<a href="https://www.facebook.com/pages/create/?ref_type=registration_form"><img src="download.jpe" alt="Smiley face" height="150px" width="150px" style="border:5px;border-radius:5px; border-color:white; "></a>&nbsp &nbsp &nbsp
+</div>
+<div style="background-color:#dee1e5;height:600px;width:600px;float:right;padding:40px; font-size:45px; font-family:Tahoma;">
+  <form name="myForm"   method="post">
+  Create a new account<br>
+  <font size="5">It's free and always will be.</font><br>
+  <input type="text" name="firstname" placeholder="firstname" style="border-radius:5px; height:30px; width:250px;">
+  &nbsp   
+  <input type="text" name="lastname" placeholder="Surname" style="border-radius:5px; height:30px; width:250px;"required ><br>
+  
+  <input type="number" name="mnb" placeholder="Mobile number or Email address" style="border-radius:5px; height:30px; width:250px;"><br>
+  
+  <input type="number" name="Rmnb" placeholder="Re-enter Mobile number or Email Address" style="border-radius:5px; height:30px; width:250px;"><br>
+  
+  <input type="password" name="password" placeholder="password" style="border-radius:5px; height:30px; width:250px;"><br>
+  
+  <font size="5">Birthday</font><br>
+
+  <select name="cars" style="height:30px;">
+  <option value="Day">Day</option>
+  <option value="saab">1</option>
+  <option value="fiat">2</option>
+  <option value="audi">3</option>
+  <option value="audi">4</option>
+  <option value="audi">5</option>
+  <option value="audi">6</option>
+  <option value="audi">7</option>  
+  <option value="audi">8</option>
+  <option value="audi">9</option>
+  <option value="audi">10</option>
+</select>
+
+<select name="cars" style="height:30px;">
+  <option value="Month">Month</option>
+  <option value="saab">Jan</option>
+  <option value="fiat">Feb</option>
+  <option value="audi">Mar</option>
+  <option value="audi">Apr</option>
+  <option value="audi">May</option>
+  <option value="audi">Jun</option>
+  <option value="audi">Jul</option>
+  <option value="audi">Aug</option>
+  <option value="audi">Sep</option>
+  <option value="audi">Oct</option>
+  <option value="audi">Nov</option>
+  <option value="audi">Dec</option>
+</select>
+
+<select name="cars" style="height:30px;">
+  <option value="Year">Year</option>
+  <option value="saab">1995</option>
+  <option value="fiat">1996</option>
+  <option value="audi">1997</option>
+  <option value="audi">1998</option>
+  <option value="audi">1999</option>
+  <option value="audi">2000</option>
+</select> <font size="1" ><a href="https://www.facebook.com/pages/create/?ref_type=registration_form">why do i need to provide my date of birth?</a></font><br>
+
+<p style='font-size:11px;'>By clicking Create Account, you agree to our Terms and confirm that you have read our Data Policy,
+including our Cookie Use Policy. You may receive SMS message notifications from Facebook and can opt out at any time.</p>
+
+<input type="radio" name="gender" value="male" checked> <font size="4">Male &nbsp
+
+<input type="radio" name="gender" value="female"> Female</font><br>  
+
+<button type="button" onclick="validateForm()" style="background-color:#559e40; height:40px; width:250px; color:white; border-radius:5px; font-size:25px " >CREATE ACCOUNT</button>
+
+<hr>
+
+<font size="2" ><a href="https://www.facebook.com/pages/create/?ref_type=registration_form" style="font-weight:15px;">Create a page</a>
+
+ for celebrity,band or business</font>
+
+ </form>
+</div>
+</div>
+<div style="font-size:15px; text-align:center; height:140px; padding:10px;">
+
+English (UK) &nbsp ਪੰਜਾਬੀ &nbsp हिन्दी &nbspاردو &nbsp EspañolPortuguês &nbsp (Brasil) &nbsp Français (France) &nbsp Deutsch &nbsp Italiano &nbsp العربية &nbsp 中文(简体)<hr> <br>
+Sign Up &nbsp Log In &nbsp Messenger &nbsp Facebook Lite &nbsp Mobile &nbsp Find Friends &nbsp People &nbsp Pages &nbsp Places &nbsp Games &nbsp Locations<br>
+Celebrities &nbsp Groups &nbsp Moments &nbsp Instagram &nbsp About &nbsp Create Advert &nbsp Create Page &nbsp Developers &nbsp Careers &nbsp Privacy	Cookies <br>
+AdChoices &nbsp Terms &nbsp Help &nbsp Settings &nbsp Activity Log<br>
+Facebook © 2017
+
+</div>
+</body>
+</html>

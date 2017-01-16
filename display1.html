@@ -1,0 +1,28 @@
+<html>
+<head>
+<style>
+
+#p1{
+
+font-size:30px;
+color:white;
+
+}
+
+
+</style>
+</head>
+<body background="MB.jpg">
+
+<p id="p1"></p>
+<script>
+var usermobile=localStorage.getItem("user");
+var data=JSON.parse(localStorage.getItem(usermobile));
+//alert(data.firstname+""+data.surname+"Mobile="+data.mnb);
+//document.write("Username is::");
+//document.write(localStorage.getItem("user"));
+
+document.getElementById("p1").innerHTML="YOUR USERNAME IS::  "+data.firstname+"<br> YOUR EMAIL IS::"+data.Email+"<br> YOUR MOBILE NUMBER IS::  "+data.mnb+"<br>GENDER IS:: "+data.gender;
+</script>
+</body>
+</html>

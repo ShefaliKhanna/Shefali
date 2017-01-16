@@ -1,0 +1,24 @@
+JASON
+
+``Multiple entries : like arrays..
+``Store values of Facebook form in cookies..
+Cookies:
+To delete cookies we use -- cookies.remove("id");
+We store data in cookies using -- cookies.put(page name,"id");
+
+Cookies--
+
+Assignment:::
+1 web page  theme..
+1. slider
+2. about use
+3. map
+4. Contact us
+4.
+Form
+name
+Email 
+radio button
+roll number
+
+
